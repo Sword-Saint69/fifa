@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KickOff | Football Live Streams</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mpegts.js@1.7.3/dist/mpegts.min.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-logo">
+            <div>
+                <h1>Kick<span>Off</span></h1>
+                <p>Football Live Streaming</p>
+            </div>
+        </div>
+
+        <div class="header-controls">
+            <div class="live-status">
+                <span class="pulse-dot"></span>
+                <span class="live-label">LIVE</span>
+            </div>
+
+            <button id="btn-toggle-sidebar" class="settings-btn active" title="Toggle Sidebar">
+                <i class="fa-solid fa-bars"></i> <span>Channels</span>
+            </button>
+
+            <a href="/add" class="settings-btn upload-btn-link hidden" title="Upload Playlist">
+                <i class="fa-solid fa-upload"></i> <span>Upload M3U</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="viewing-area">
+            <div id="player-grid" class="player-grid single-layout">
+                <div id="container-ch1" class="player-container active">
+                    <div class="player-header">
+                        <div class="player-channel-info">
+                            <span class="badge ch1-badge">LIVE</span>
+                            <span id="label-ch1-title" class="stream-title">Select a channel from the sidebar</span>
+                        </div>
+                        <div class="player-actions">
+                            <span id="stat-resolution" class="stat-res-badge">No Stream</span>
+                            <button class="player-action-btn fullscreen-btn" data-target="video-ch1" title="Fullscreen (F)">
+                                <i class="fa-solid fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="video-wrapper">
+                        <video id="video-ch1" autoplay playsinline controls muted></video>
+                        <iframe id="iframe-player" class="hidden" style="width:100%;height:100%;border:none;background:#000;" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                        <div id="ch1-spinner" class="spinner-overlay hidden">
+                            <div class="spinner"></div>
+                        </div>
+                        <div id="ch1-error-overlay" class="error-overlay hidden">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <p>Stream failed to load. Try another channel or upload your M3U playlist.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside id="app-sidebar" class="sidebar">
+            <div id="channel-picker-card" class="sidebar-card" style="flex:1;display:flex;flex-direction:column;min-height:0;">
+                <h3>Channels</h3>
+                <div id="playlist-tabs" class="playlist-tabs"></div>
+                <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px;">
+                    <input type="text" id="channel-search" placeholder="Search channels..." style="flex:1;">
+                    <button id="btn-sort-quality" class="settings-btn" title="Sort by latency" style="flex-shrink:0;padding:6px 10px;font-size:0.7rem;">
+                        <i class="fa-solid fa-signal"></i>
+                    </button>
+                </div>
+                <div id="m3u-channel-list" class="channel-options" style="flex:1;overflow-y:auto;">
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

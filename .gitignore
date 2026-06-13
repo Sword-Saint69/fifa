@@ -1,0 +1,9 @@
+# Ignore subfolder
+gridstream/
+
+# Ignore database and environment files
+*.db
+*.json
+*.log
+__pycache__/
+*.pyc
