@@ -7,3 +7,10 @@ gridstream/
 *.log
 __pycache__/
 *.pyc
+
+# Explicitly track packages
+!package.json
+!package-lock.json
+
+# Ignore node_modules
+node_modules/
